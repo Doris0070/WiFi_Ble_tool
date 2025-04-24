@@ -9,7 +9,7 @@
 #include "setup_ntp_time.h"
 
 /* Get screen resolution from platformio.ini */
-// #define TFT_HOR_RES 240
+// #define TFT_HOR_RES 240 
 // #define TFT_VER_RES 320
 
 /*LVGL draw into this buffer, 1/10 screen size usually works well. The size is in bytes*/
