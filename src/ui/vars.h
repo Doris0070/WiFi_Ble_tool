@@ -15,13 +15,11 @@ extern "C" {
 // Flow global variables
 
 enum FlowGlobalVariables {
-    FLOW_GLOBAL_VARIABLE_UI_HAND = 0
+    FLOW_GLOBAL_VARIABLE_NONE
 };
 
 // Native global variables
 
-extern int32_t get_var_ui_hand();
-extern void set_var_ui_hand(int32_t value);
 
 
 #ifdef __cplusplus

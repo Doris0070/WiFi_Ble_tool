@@ -7,6 +7,7 @@
 extern "C" {
 #endif
 
+extern void action_gumb_pritisnjen(lv_event_t * e);
 
 
 #ifdef __cplusplus

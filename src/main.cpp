@@ -42,7 +42,7 @@ void setup() {
 #endif
     Serial.printf("LVGL demo V%d.%d.%d\n", lv_version_major(), lv_version_minor(), lv_version_patch());
 
-    wifi_setup();  // Inicializiramo WiFi povezavo - klic funkcije iz wifi_settings.h
+    //wifi_setup();  // Inicializiramo WiFi povezavo - klic funkcije iz wifi_settings.h
     touch_setup(); // Inicializiramo dotik - klic funkcije iz touch_display.h
 
     // Initialize LVGL - this must be done before any LVGL function calls
@@ -59,19 +59,23 @@ void setup() {
     Serial.println("Setup done");
 
     ui_init();              // inicializiramo uporabniški vmesnik, narejen z EEZ Studio
-    fix_wifi_ui_textarea(); // fix nastavitve ui
-    setup_ntp_time();       // kliči setup_ntp_time() iz setup_ntp_time.h
+    //fix_wifi_ui_textarea(); // fix nastavitve ui
+    //setup_ntp_time();       // kliči setup_ntp_time() iz setup_ntp_time.h
 
     // Vse te nastavitve spodaj lahko nastavite že v EEZ Studio, če uporabite "flow" način
     //  Nastavimo oznake - labele na simbole
-    
-    // tu pride še shranjevanje nastavitev v Preferences
+    lv_obj_add_event_cb(objects.ble_button, [](lv_event_t *event) {
+        // Pritisnjen je bil gumb BACK, naredimo menjavo zaslona
+        lv_screen_load(objects.ble_settings); }, LV_EVENT_CLICKED, NULL);
+    lv_obj_add_event_cb(objects.wifi_button, [](lv_event_t *event) {
+        // Pritisnjen je bil gumb BACK, naredimo menjavo zaslona
+        lv_screen_load(objects.wifi_settings); }, LV_EVENT_CLICKED, NULL);
 }
 
-tm tm_info;
-int prev_sec = 0;
-bool wifi_flag_visible = false;
-
 void loop() {
-    
+    //Pust notr kr je nujno za refreshat zaslon!!!!!!!!!!!!!!!!!!!!!!
+    lv_tick_inc(millis() - lastTick); // Update the tick timer. Tick is new for LVGL 9
+    lastTick = millis();
+    lv_timer_handler(); // Update the UI
+    delay(5);
 }

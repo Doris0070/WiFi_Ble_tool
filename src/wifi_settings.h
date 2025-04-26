@@ -11,8 +11,8 @@ Preferences NastavitveWiFi;
 
 void fix_wifi_ui_textarea() {
     // fix nastavitve ui
-    lv_textarea_set_text(objects.tb_ssid_text, wifi_ssid);
-    lv_textarea_set_text(objects.tb_ssid_pass, wifi_password);
+    //lv_textarea_set_text(objects.tb_ssid_text, wifi_ssid);
+    //lv_textarea_set_text(objects.tb_ssid_pass, wifi_password);
 }
 
 void wifi_setup() {

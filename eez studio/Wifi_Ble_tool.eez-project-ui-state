@@ -191,6 +191,18 @@
               "children": [
                 {
                   "type": "tab",
+                  "id": "#3ae888e6-d90a-4e10-8eb2-73569c2064a0",
+                  "name": "Settings",
+                  "component": "editor",
+                  "config": {
+                    "objectPath": "[Wifi_Ble_tool.eez-project]:/settings",
+                    "subObjectPath": "[Wifi_Ble_tool.eez-project]:/settings",
+                    "permanent": false
+                  },
+                  "icon": "material:settings"
+                },
+                {
+                  "type": "tab",
                   "id": "#d7891d1e-1cad-434a-9e70-f4594d436e5c",
                   "name": "Main",
                   "component": "editor",
@@ -200,7 +212,8 @@
                   },
                   "icon": "svg:page"
                 }
-              ]
+              ],
+              "active": true
             },
             {
               "type": "row",
@@ -220,8 +233,7 @@
                       "enableClose": false,
                       "icon": "svg:properties"
                     }
-                  ],
-                  "active": true
+                  ]
                 },
                 {
                   "type": "tabset",
@@ -969,9 +981,7 @@
     "[Wifi_Ble_tool.eez-project]:/userPages/0[flow-state]": {
       "selection": {
         "0": {
-          "0": {
-            "$selected": true
-          }
+          "0": {}
         }
       },
       "transform": {
