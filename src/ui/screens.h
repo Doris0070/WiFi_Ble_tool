@@ -18,6 +18,7 @@ typedef struct _objects_t {
     lv_obj_t *wifi_button_label;
     lv_obj_t *wifi_jammer_button;
     lv_obj_t *wifi_page_back_button_1;
+    lv_obj_t *wifi_dos_button;
     lv_obj_t *wifi_jammer_back_button;
     lv_obj_t *ble_dos_button;
     lv_obj_t *bluetooth_page_back_button;

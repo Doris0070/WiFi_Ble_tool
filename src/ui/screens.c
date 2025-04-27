@@ -110,8 +110,8 @@ void create_screen_wifi_settings() {
             // wifi_jammer_button
             lv_obj_t *obj = lv_button_create(parent_obj);
             objects.wifi_jammer_button = obj;
-            lv_obj_set_pos(obj, 48, 95);
-            lv_obj_set_size(obj, LV_PCT(70), 50);
+            lv_obj_set_pos(obj, 24, 70);
+            lv_obj_set_size(obj, LV_PCT(85), 50);
             {
                 lv_obj_t *parent_obj = obj;
                 {
@@ -120,7 +120,7 @@ void create_screen_wifi_settings() {
                     lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
                     lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
                     lv_obj_set_style_text_font(obj, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
-                    lv_label_set_text(obj, "WiFi jammer");
+                    lv_label_set_text(obj, "WiFi jammer (spamming)");
                 }
             }
         }
@@ -144,6 +144,24 @@ void create_screen_wifi_settings() {
                     lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
                     lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
                     lv_label_set_text(obj, "Back");
+                }
+            }
+        }
+        {
+            // wifi_dos_button
+            lv_obj_t *obj = lv_button_create(parent_obj);
+            objects.wifi_dos_button = obj;
+            lv_obj_set_pos(obj, 25, 130);
+            lv_obj_set_size(obj, LV_PCT(85), 50);
+            {
+                lv_obj_t *parent_obj = obj;
+                {
+                    lv_obj_t *obj = lv_label_create(parent_obj);
+                    lv_obj_set_pos(obj, 0, 0);
+                    lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+                    lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
+                    lv_obj_set_style_text_font(obj, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
+                    lv_label_set_text(obj, "WiFi jammer (DoS)");
                 }
             }
         }
@@ -204,8 +222,8 @@ void create_screen_ble_settings() {
             // ble_dos_button
             lv_obj_t *obj = lv_button_create(parent_obj);
             objects.ble_dos_button = obj;
-            lv_obj_set_pos(obj, 49, 95);
-            lv_obj_set_size(obj, LV_PCT(70), 50);
+            lv_obj_set_pos(obj, 25, 70);
+            lv_obj_set_size(obj, LV_PCT(85), 50);
             {
                 lv_obj_t *parent_obj = obj;
                 {
@@ -245,8 +263,8 @@ void create_screen_ble_settings() {
             // ble_jammer_button
             lv_obj_t *obj = lv_button_create(parent_obj);
             objects.ble_jammer_button = obj;
-            lv_obj_set_pos(obj, 48, 150);
-            lv_obj_set_size(obj, LV_PCT(70), 50);
+            lv_obj_set_pos(obj, 25, 125);
+            lv_obj_set_size(obj, LV_PCT(85), 50);
             {
                 lv_obj_t *parent_obj = obj;
                 {
