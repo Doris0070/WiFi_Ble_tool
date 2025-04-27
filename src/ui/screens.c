@@ -155,6 +155,44 @@ void create_screen_wifi_settings() {
 void tick_screen_wifi_settings() {
 }
 
+void create_screen_wifi_jammer_screen() {
+    lv_obj_t *obj = lv_obj_create(0);
+    objects.wifi_jammer_screen = obj;
+    lv_obj_set_pos(obj, 0, 0);
+    lv_obj_set_size(obj, 320, 240);
+    {
+        lv_obj_t *parent_obj = obj;
+        {
+            // wifi_jammer_back_button
+            lv_obj_t *obj = lv_button_create(parent_obj);
+            objects.wifi_jammer_back_button = obj;
+            lv_obj_set_pos(obj, 110, 120);
+            lv_obj_set_size(obj, 100, 50);
+            {
+                lv_obj_t *parent_obj = obj;
+                {
+                    lv_obj_t *obj = lv_label_create(parent_obj);
+                    lv_obj_set_pos(obj, 0, 0);
+                    lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+                    lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
+                    lv_label_set_text(obj, "Back/Stop");
+                }
+            }
+        }
+        {
+            lv_obj_t *obj = lv_label_create(parent_obj);
+            lv_obj_set_pos(obj, 78, 46);
+            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+            lv_label_set_text(obj, "Jamming in proggress");
+        }
+    }
+    
+    tick_screen_wifi_jammer_screen();
+}
+
+void tick_screen_wifi_jammer_screen() {
+}
+
 void create_screen_ble_settings() {
     lv_obj_t *obj = lv_obj_create(0);
     objects.ble_settings = obj;
@@ -203,6 +241,24 @@ void create_screen_ble_settings() {
                 }
             }
         }
+        {
+            // ble_jammer_button
+            lv_obj_t *obj = lv_button_create(parent_obj);
+            objects.ble_jammer_button = obj;
+            lv_obj_set_pos(obj, 48, 150);
+            lv_obj_set_size(obj, LV_PCT(70), 50);
+            {
+                lv_obj_t *parent_obj = obj;
+                {
+                    lv_obj_t *obj = lv_label_create(parent_obj);
+                    lv_obj_set_pos(obj, 0, 0);
+                    lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+                    lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
+                    lv_obj_set_style_text_font(obj, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
+                    lv_label_set_text(obj, "Bluetooth jammer");
+                }
+            }
+        }
     }
     
     tick_screen_ble_settings();
@@ -217,6 +273,7 @@ typedef void (*tick_screen_func_t)();
 tick_screen_func_t tick_screen_funcs[] = {
     tick_screen_main,
     tick_screen_wifi_settings,
+    tick_screen_wifi_jammer_screen,
     tick_screen_ble_settings,
 };
 void tick_screen(int screen_index) {
@@ -233,5 +290,6 @@ void create_screens() {
     
     create_screen_main();
     create_screen_wifi_settings();
+    create_screen_wifi_jammer_screen();
     create_screen_ble_settings();
 }
