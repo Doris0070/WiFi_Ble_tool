@@ -7,6 +7,7 @@
 #include "touch_display.h"
 #include "ui/ui.h"
 #include "setup_ntp_time.h"
+#include "wifi_page_library.h"
 
 /* Get screen resolution from platformio.ini */
 // #define TFT_HOR_RES 240 
@@ -76,6 +77,15 @@ void setup() {
     lv_obj_add_event_cb(objects.wifi_page_back_button_1, [](lv_event_t *event) {
         // Pritisnjen je bil gumb BACK, naredimo menjavo zaslona
         lv_screen_load(objects.main); }, LV_EVENT_CLICKED, NULL);
+    lv_obj_add_event_cb(objects.wifi_jammer_button, [](lv_event_t *event) {
+        wifi_jamm(); // 👈 Start jamming Wi-Fi
+    }, LV_EVENT_CLICKED, NULL);
+    lv_obj_add_event_cb(objects.wifi_jammer_back_button, [](lv_event_t *event) {
+        wifi_jamm(); // 👈 Start jamming Wi-Fi
+    }, LV_EVENT_CLICKED, NULL);
+    lv_obj_add_event_cb(objects.wifi_dos_button, [](lv_event_t *event) {
+        wifi_dos(); // 👈 Start jamming Wi-Fi
+    }, LV_EVENT_CLICKED, NULL);
 }
 
 void loop() {

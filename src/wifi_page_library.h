@@ -3,12 +3,8 @@
 
 #include <WiFi.h>
 #include <esp_wifi.h>
-#include "wifi_settings_jammer_screen.h"
 
-// =====================
-// ===== SETTINGS ======
-// =====================
-
+// =============== SETTINGS ===============
 #define DEFAULT_CHANNEL 1
 
 struct NetworkInfo {
@@ -17,48 +13,25 @@ struct NetworkInfo {
     int channel;
 };
 
+// ===== GLOBALS =====
 extern NetworkInfo targetNetwork;
-
-// === GLOBAL ARRAYS ===
 extern const char **wifi_button_texts;
-extern int WIFI_BUTTON_COUNT;
 extern String *wifi_networks;
-
-// === NEW: Save last clicked index ===
+extern int WIFI_BUTTON_COUNT;
 extern int wifi_selected_index;
 
-////////////////////////// WIFI "HOTSPOTS" SCANNER /////////////////////////////
+// =============== FUNCTIONS ===============
 
-void scanNetworks() {
-    if (wifi_networks) {
-        delete[] wifi_networks;
-        wifi_networks = nullptr;
-    }
-    if (wifi_button_texts) {
-        delete[] wifi_button_texts;
-        wifi_button_texts = nullptr;
-    }
-    WIFI_BUTTON_COUNT = 0;
-    Serial.println("[*] Scanning Wi-Fi networks...");
-    int n = WiFi.scanNetworks(false, true, false, 300, 13); // Active Scan
+// Scan for Wi-Fi networks
+void scanNetworks();
 
-    if (n == 0) {
-        Serial.println("[!] No networks found!");
-        return;
-    }
+// Start Wi-Fi Jamming
+void wifi_jamm();
 
-    // Allocate memory (free old if needed)
-    if (wifi_networks) delete[] wifi_networks;
-    if (wifi_button_texts) delete[] wifi_button_texts;
+// Start Wi-Fi DoS attack
+void wifi_dos();
 
-    wifi_networks = new String[n];
-    wifi_button_texts = new const char*[n];
-
-    for (int i = 0; i < n; ++i) {
-        wifi_networks[i] = WiFi.SSID(i);
-        wifi_button_texts[i] = wifi_networks[i].c_str();
-    }
-    WIFI_BUTTON_COUNT = n;
-}
+// Stop any jamming
+void wifi_jamm_stop();
 
 #endif // WIFI_PAGE_LIBRARY_H
