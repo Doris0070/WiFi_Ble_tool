@@ -1,7 +1,9 @@
 {
   "navigation": {
     "selectedUserPageObject": "[Wifi_Ble_tool.eez-project]:/userPages/0",
-    "subnavigationSelectedItems": {}
+    "subnavigationSelectedItems": {
+      "variables-tab/sub-navigation/selected-item": "Global"
+    }
   },
   "layoutModel": {
     "rootEditor": {
@@ -21,6 +23,7 @@
           },
           {
             "type": "border",
+            "selected": 0,
             "size": 240,
             "location": "right",
             "children": [
@@ -68,6 +71,7 @@
           },
           {
             "type": "border",
+            "selected": 0,
             "location": "bottom",
             "children": [
               {
@@ -178,7 +182,8 @@
                       "enableClose": false,
                       "icon": "svg:variable"
                     }
-                  ]
+                  ],
+                  "active": true
                 }
               ]
             },
@@ -186,6 +191,7 @@
               "type": "tabset",
               "id": "EDITORS",
               "weight": 65,
+              "selected": 1,
               "enableDeleteWhenEmpty": false,
               "enableClose": false,
               "children": [
@@ -212,8 +218,7 @@
                   },
                   "icon": "svg:page"
                 }
-              ],
-              "active": true
+              ]
             },
             {
               "type": "row",
@@ -981,7 +986,12 @@
     "[Wifi_Ble_tool.eez-project]:/userPages/0[flow-state]": {
       "selection": {
         "0": {
-          "0": {}
+          "0": {
+            "0": {}
+          },
+          "1": {
+            "0": {}
+          }
         }
       },
       "transform": {
@@ -999,7 +1009,11 @@
       }
     },
     "[Wifi_Ble_tool.eez-project]:/userPages/1[flow-state]": {
-      "selection": {},
+      "selection": {
+        "0": {
+          "0": {}
+        }
+      },
       "transform": {
         "translate": {
           "x": -160,
@@ -1015,7 +1029,11 @@
       }
     },
     "[Wifi_Ble_tool.eez-project]:/userPages/2[flow-state]": {
-      "selection": {},
+      "selection": {
+        "0": {
+          "0": {}
+        }
+      },
       "transform": {
         "translate": {
           "x": -160,
@@ -1037,6 +1055,7 @@
   "searchMatchWholeWord": false,
   "replaceEnabled": false,
   "replaceText": "",
+  "pageRuntimeFrontFace": true,
   "breakpoints": {},
   "watchExpressions": [],
   "showComponentDescriptions": true,
