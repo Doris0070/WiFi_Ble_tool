@@ -7,6 +7,8 @@
 #include "touch_display.h"
 #include "ui/ui.h"
 #include "setup_ntp_time.h"
+#include "wifi_page_functions.h"
+#include "ble_page_functions.h"
 
 /* Get screen resolution from platformio.ini */
 // #define TFT_HOR_RES 240 

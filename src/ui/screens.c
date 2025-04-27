@@ -126,9 +126,9 @@ void create_screen_wifi_settings() {
         }
         {
             lv_obj_t *obj = lv_label_create(parent_obj);
-            lv_obj_set_pos(obj, 42, 5);
+            lv_obj_set_pos(obj, 86, 5);
             lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-            lv_label_set_text(obj, "Bluetooth_page");
+            lv_label_set_text(obj, "WiFi page");
         }
         {
             // wifi_page_back_button_1
@@ -184,7 +184,7 @@ void create_screen_ble_settings() {
             lv_obj_t *obj = lv_label_create(parent_obj);
             lv_obj_set_pos(obj, 42, 5);
             lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
-            lv_label_set_text(obj, "Bluetooth_page");
+            lv_label_set_text(obj, "Bluetooth page");
         }
         {
             // bluetooth_page_back_button
