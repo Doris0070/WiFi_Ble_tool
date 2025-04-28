@@ -14,6 +14,7 @@ static void back_button_event_cb(lv_event_t *e);
 
 void wifi_jammer_screen_jamm(void) {
     lv_scr_load(objects.wifi_jammer_ssids_selector); // Load screen
+    lv_obj_clean(objects.wifi_jammer_ssids_selector);
 
     // ---- Title Label ----
     lv_obj_t *title_label = lv_label_create(objects.wifi_jammer_ssids_selector);
@@ -61,6 +62,7 @@ void wifi_jammer_screen_jamm(void) {
 
 void wifi_jammer_screen_dos(void) {
     lv_scr_load(objects.wifi_jammer_ssids_selector); // Load screen
+    lv_obj_clean(objects.wifi_jammer_ssids_selector);
 
     // ---- Title Label ----
     lv_obj_t *title_label = lv_label_create(objects.wifi_jammer_ssids_selector);
@@ -123,6 +125,7 @@ static void wifi_button_event_cb_1(lv_event_t *e) {
         Serial.print("Channel: "); Serial.println(targetNetwork.channel);
         Serial.print("BSSID: "); Serial.println(WiFi.BSSIDstr(index));
 
+        WiFi.scanDelete();
         lv_screen_load(objects.wifi_jammer_screen);
 
         wifi_jamm();
@@ -145,6 +148,7 @@ static void wifi_button_event_cb_2(lv_event_t *e) {
         Serial.print("Channel: "); Serial.println(targetNetwork.channel);
         Serial.print("BSSID: "); Serial.println(WiFi.BSSIDstr(index));
 
+        WiFi.scanDelete();
         lv_screen_load(objects.wifi_jammer_screen);
 
         wifi_dos();
