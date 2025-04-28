@@ -1,6 +1,6 @@
 {
   "navigation": {
-    "selectedUserPageObject": "[Wifi_Ble_tool.eez-project]:/userPages/0",
+    "selectedUserPageObject": "[Wifi_Ble_tool.eez-project]:/userPages/2",
     "subnavigationSelectedItems": {
       "variables-tab/sub-navigation/selected-item": "Global"
     }
@@ -182,8 +182,7 @@
                       "enableClose": false,
                       "icon": "svg:variable"
                     }
-                  ],
-                  "active": true
+                  ]
                 }
               ]
             },
@@ -191,10 +190,20 @@
               "type": "tabset",
               "id": "EDITORS",
               "weight": 65,
-              "selected": 1,
               "enableDeleteWhenEmpty": false,
               "enableClose": false,
               "children": [
+                {
+                  "type": "tab",
+                  "id": "#bc7b8cce-4e0c-41a5-b837-5d55c771c633",
+                  "name": "wifi_jammer_screen",
+                  "component": "editor",
+                  "config": {
+                    "objectPath": "[Wifi_Ble_tool.eez-project]:/userPages/2",
+                    "permanent": false
+                  },
+                  "icon": "svg:page"
+                },
                 {
                   "type": "tab",
                   "id": "#3ae888e6-d90a-4e10-8eb2-73569c2064a0",
@@ -206,19 +215,9 @@
                     "permanent": false
                   },
                   "icon": "material:settings"
-                },
-                {
-                  "type": "tab",
-                  "id": "#d7891d1e-1cad-434a-9e70-f4594d436e5c",
-                  "name": "Main",
-                  "component": "editor",
-                  "config": {
-                    "objectPath": "[Wifi_Ble_tool.eez-project]:/userPages/0",
-                    "permanent": false
-                  },
-                  "icon": "svg:page"
                 }
-              ]
+              ],
+              "active": true
             },
             {
               "type": "row",
@@ -774,7 +773,8 @@
                       "component": "styles",
                       "enableClose": false
                     }
-                  ]
+                  ],
+                  "active": true
                 },
                 {
                   "type": "tabset",
@@ -1011,6 +1011,27 @@
     "[Wifi_Ble_tool.eez-project]:/userPages/1[flow-state]": {
       "selection": {
         "0": {
+          "0": {},
+          "3": {}
+        }
+      },
+      "transform": {
+        "translate": {
+          "x": -160,
+          "y": -78.83334674835203
+        },
+        "scale": 1
+      },
+      "timeline": {
+        "isEditorActive": false,
+        "position": 0,
+        "secondToPx": 200,
+        "scrollLeft": 0
+      }
+    },
+    "[Wifi_Ble_tool.eez-project]:/userPages/2[flow-state]": {
+      "selection": {
+        "0": {
           "0": {}
         }
       },
@@ -1028,12 +1049,28 @@
         "scrollLeft": 0
       }
     },
-    "[Wifi_Ble_tool.eez-project]:/userPages/2[flow-state]": {
+    "[Wifi_Ble_tool.eez-project]:/userPages/3[flow-state]": {
       "selection": {
         "0": {
-          "0": {}
+          "3": {}
         }
       },
+      "transform": {
+        "translate": {
+          "x": -160,
+          "y": -120
+        },
+        "scale": 1
+      },
+      "timeline": {
+        "isEditorActive": false,
+        "position": 0,
+        "secondToPx": 200,
+        "scrollLeft": 0
+      }
+    },
+    "[Wifi_Ble_tool.eez-project]:/userPages/4[flow-state]": {
+      "selection": {},
       "transform": {
         "translate": {
           "x": -160,

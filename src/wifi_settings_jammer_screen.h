@@ -12,7 +12,7 @@ void wifi_jammer_screen(void) {
 
     const int button_spacing = 5;
     const int button_height = 50;
-    const int button_width_pct = 80;
+    const int button_width_pct = 85;
     int start_y = 0;
 
     for (uint8_t i = 0; i < WIFI_BUTTON_COUNT; i++) {
@@ -51,7 +51,7 @@ static void wifi_button_event_cb(lv_event_t *e) {
         Serial.print("BSSID: "); Serial.println(WiFi.BSSIDstr(index));
 
         // 🚀 Switch to jammer screen
-        //lv_screen_load(objects.wifi_jammer_ssids_selector);
+        lv_screen_load(objects.wifi_jammer_screen);
 
         // 🚀 Start jamming immediately
         wifi_jamm();

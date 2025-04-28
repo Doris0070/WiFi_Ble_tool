@@ -81,7 +81,7 @@ void setup() {
         wifi_jamm(); // 👈 Start jamming Wi-Fi
     }, LV_EVENT_CLICKED, NULL);
     lv_obj_add_event_cb(objects.wifi_jammer_back_button, [](lv_event_t *event) {
-        wifi_jamm(); // 👈 Start jamming Wi-Fi
+        wifi_jamm_stop(); // 👈 Stop jamming Wi-Fi
     }, LV_EVENT_CLICKED, NULL);
     lv_obj_add_event_cb(objects.wifi_dos_button, [](lv_event_t *event) {
         wifi_dos(); // 👈 Start jamming Wi-Fi
