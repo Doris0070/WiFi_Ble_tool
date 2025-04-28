@@ -22,6 +22,8 @@ void scanNetworks() {
 
     Serial.println("[*] Scanning Wi-Fi networks...");
     int n = WiFi.scanNetworks(false, true, false, 300, 13); // Active scan
+    Serial.printf("scanned networks: %d \n",n);
+    
 
     if (n <= 0) {
         Serial.println("[!] No networks found.");

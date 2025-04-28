@@ -285,6 +285,18 @@ void create_screen_ble_settings() {
 void tick_screen_ble_settings() {
 }
 
+void create_screen_wifi_jammer_ssids_selector() {
+    lv_obj_t *obj = lv_obj_create(0);
+    objects.wifi_jammer_ssids_selector = obj;
+    lv_obj_set_pos(obj, 0, 0);
+    lv_obj_set_size(obj, 320, 240);
+    
+    tick_screen_wifi_jammer_ssids_selector();
+}
+
+void tick_screen_wifi_jammer_ssids_selector() {
+}
+
 
 
 typedef void (*tick_screen_func_t)();
@@ -293,6 +305,7 @@ tick_screen_func_t tick_screen_funcs[] = {
     tick_screen_wifi_settings,
     tick_screen_wifi_jammer_screen,
     tick_screen_ble_settings,
+    tick_screen_wifi_jammer_ssids_selector,
 };
 void tick_screen(int screen_index) {
     tick_screen_funcs[screen_index]();
@@ -310,4 +323,5 @@ void create_screens() {
     create_screen_wifi_settings();
     create_screen_wifi_jammer_screen();
     create_screen_ble_settings();
+    create_screen_wifi_jammer_ssids_selector();
 }

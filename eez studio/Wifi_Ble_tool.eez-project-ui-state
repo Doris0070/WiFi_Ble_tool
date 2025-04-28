@@ -1,6 +1,6 @@
 {
   "navigation": {
-    "selectedUserPageObject": "[Wifi_Ble_tool.eez-project]:/userPages/2",
+    "selectedUserPageObject": "[Wifi_Ble_tool.eez-project]:/userPages/4",
     "subnavigationSelectedItems": {
       "variables-tab/sub-navigation/selected-item": "Global"
     }
@@ -196,11 +196,11 @@
                 {
                   "type": "tab",
                   "id": "#bc7b8cce-4e0c-41a5-b837-5d55c771c633",
-                  "name": "wifi_jammer_screen",
+                  "name": "wifi_jammer_ssids_selector",
                   "component": "editor",
                   "config": {
-                    "objectPath": "[Wifi_Ble_tool.eez-project]:/userPages/2",
-                    "permanent": false
+                    "objectPath": "[Wifi_Ble_tool.eez-project]:/userPages/4",
+                    "permanent": true
                   },
                   "icon": "svg:page"
                 },

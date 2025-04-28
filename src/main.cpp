@@ -8,6 +8,7 @@
 #include "ui/ui.h"
 #include "setup_ntp_time.h"
 #include "wifi_page_library.h"
+#include "wifi_settings_jammer_screen.h"
 
 /* Get screen resolution from platformio.ini */
 // #define TFT_HOR_RES 240 
@@ -35,6 +36,7 @@ uint32_t lastTick = 0; // Used to track the tick timer
 
 void setup() {
     Serial.begin(115200);
+    WiFi.begin();
 
     // če imamo rdečo led, jo nastavimo na izhod
 #ifdef LED_R
@@ -78,13 +80,18 @@ void setup() {
         // Pritisnjen je bil gumb BACK, naredimo menjavo zaslona
         lv_screen_load(objects.main); }, LV_EVENT_CLICKED, NULL);
     lv_obj_add_event_cb(objects.wifi_jammer_button, [](lv_event_t *event) {
-        wifi_jamm(); // 👈 Start jamming Wi-Fi
+        scanNetworks();
+        wifi_jammer_screen_jamm();
     }, LV_EVENT_CLICKED, NULL);
     lv_obj_add_event_cb(objects.wifi_jammer_back_button, [](lv_event_t *event) {
-        wifi_jamm_stop(); // 👈 Stop jamming Wi-Fi
+        wifi_jamm_stop(); // Stop jamming Wi-Fi
     }, LV_EVENT_CLICKED, NULL);
+    lv_obj_add_event_cb(objects.wifi_page_back_button_1, [](lv_event_t *event) {
+        // Pritisnjen je bil gumb BACK, naredimo menjavo zaslona
+        lv_screen_load(objects.wifi_settings); }, LV_EVENT_CLICKED, NULL);
     lv_obj_add_event_cb(objects.wifi_dos_button, [](lv_event_t *event) {
-        wifi_dos(); // 👈 Start jamming Wi-Fi
+        scanNetworks(); 
+        wifi_jammer_screen_dos();
     }, LV_EVENT_CLICKED, NULL);
 }
 
