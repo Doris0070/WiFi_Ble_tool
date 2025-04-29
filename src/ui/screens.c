@@ -297,6 +297,34 @@ void create_screen_wifi_jammer_ssids_selector() {
 void tick_screen_wifi_jammer_ssids_selector() {
 }
 
+void create_screen_loading_screen() {
+    lv_obj_t *obj = lv_obj_create(0);
+    objects.loading_screen = obj;
+    lv_obj_set_pos(obj, 0, 0);
+    lv_obj_set_size(obj, 320, 240);
+    {
+        lv_obj_t *parent_obj = obj;
+        {
+            lv_obj_t *obj = lv_spinner_create(parent_obj);
+            lv_obj_set_pos(obj, 106, 68);
+            lv_obj_set_size(obj, 108, 104);
+            lv_spinner_set_anim_params(obj, 1000, 60);
+        }
+        {
+            lv_obj_t *obj = lv_label_create(parent_obj);
+            lv_obj_set_pos(obj, 60, 24);
+            lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
+            lv_obj_set_style_text_font(obj, &lv_font_montserrat_20, LV_PART_MAIN | LV_STATE_DEFAULT);
+            lv_label_set_text(obj, "Action in proggress");
+        }
+    }
+    
+    tick_screen_loading_screen();
+}
+
+void tick_screen_loading_screen() {
+}
+
 
 
 typedef void (*tick_screen_func_t)();
@@ -306,6 +334,7 @@ tick_screen_func_t tick_screen_funcs[] = {
     tick_screen_wifi_jammer_screen,
     tick_screen_ble_settings,
     tick_screen_wifi_jammer_ssids_selector,
+    tick_screen_loading_screen,
 };
 void tick_screen(int screen_index) {
     tick_screen_funcs[screen_index]();
@@ -324,4 +353,5 @@ void create_screens() {
     create_screen_wifi_jammer_screen();
     create_screen_ble_settings();
     create_screen_wifi_jammer_ssids_selector();
+    create_screen_loading_screen();
 }

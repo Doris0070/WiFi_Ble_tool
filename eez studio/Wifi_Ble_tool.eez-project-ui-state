@@ -1,6 +1,6 @@
 {
   "navigation": {
-    "selectedUserPageObject": "[Wifi_Ble_tool.eez-project]:/userPages/4",
+    "selectedUserPageObject": "[Wifi_Ble_tool.eez-project]:/userPages/5",
     "subnavigationSelectedItems": {
       "variables-tab/sub-navigation/selected-item": "Global"
     }
@@ -193,6 +193,17 @@
               "enableDeleteWhenEmpty": false,
               "enableClose": false,
               "children": [
+                {
+                  "type": "tab",
+                  "id": "#af9ae240-3294-4225-af95-d8fa4cc502d6",
+                  "name": "loading_screen",
+                  "component": "editor",
+                  "config": {
+                    "objectPath": "[Wifi_Ble_tool.eez-project]:/userPages/5",
+                    "permanent": false
+                  },
+                  "icon": "svg:page"
+                },
                 {
                   "type": "tab",
                   "id": "#bc7b8cce-4e0c-41a5-b837-5d55c771c633",
@@ -1032,13 +1043,15 @@
     "[Wifi_Ble_tool.eez-project]:/userPages/2[flow-state]": {
       "selection": {
         "0": {
-          "0": {}
+          "0": {
+            "$selected": true
+          }
         }
       },
       "transform": {
         "translate": {
           "x": -160,
-          "y": -120
+          "y": -87.49999198913565
         },
         "scale": 1
       },
@@ -1084,6 +1097,24 @@
         "secondToPx": 200,
         "scrollLeft": 0
       }
+    },
+    "[Wifi_Ble_tool.eez-project]:/userPages/5[flow-state]": {
+      "selection": {
+        "0": {}
+      },
+      "transform": {
+        "translate": {
+          "x": -160,
+          "y": -120
+        },
+        "scale": 1
+      },
+      "timeline": {
+        "isEditorActive": false,
+        "position": 0,
+        "secondToPx": 200,
+        "scrollLeft": 0
+      }
     }
   },
   "activeOutputSection": 0,
@@ -1100,7 +1131,9 @@
   "selectedStylePropertyName": "",
   "lvglPart": "MAIN",
   "lvglState": "DEFAULT",
-  "lvglExpandedPropertiesGroup": [],
+  "lvglExpandedPropertiesGroup": [
+    "TEXT"
+  ],
   "showInactiveFlowsInDebugger": true,
   "globalFlowZoom": true,
   "flowZoom": 1,

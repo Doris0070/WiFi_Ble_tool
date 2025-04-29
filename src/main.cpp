@@ -26,6 +26,7 @@ void my_print(lv_log_level_t level, const char *buf) {
 #endif
 
 /* LVGL calls it when a rendered image needs to copied to the display*/
+//mogoč treba zakomentirat
 void my_disp_flush(lv_display_t *disp, const lv_area_t *area, uint8_t *px_map) {
     lv_disp_flush_ready(disp);
 }
@@ -80,6 +81,7 @@ void setup() {
         // Pritisnjen je bil gumb BACK, naredimo menjavo zaslona
         lv_screen_load(objects.main); }, LV_EVENT_CLICKED, NULL);
     lv_obj_add_event_cb(objects.wifi_jammer_button, [](lv_event_t *event) {
+        lv_screen_load(objects.loading_screen);
         scanNetworks();
         wifi_jammer_screen_jamm();
     }, LV_EVENT_CLICKED, NULL);
@@ -88,6 +90,7 @@ void setup() {
         lv_screen_load(objects.wifi_settings);
     }, LV_EVENT_CLICKED, NULL);
     lv_obj_add_event_cb(objects.wifi_dos_button, [](lv_event_t *event) {
+        lv_screen_load(objects.loading_screen);
         scanNetworks(); 
         wifi_jammer_screen_dos();
     }, LV_EVENT_CLICKED, NULL);

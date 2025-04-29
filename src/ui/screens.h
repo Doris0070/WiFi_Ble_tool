@@ -13,6 +13,7 @@ typedef struct _objects_t {
     lv_obj_t *wifi_jammer_screen;
     lv_obj_t *ble_settings;
     lv_obj_t *wifi_jammer_ssids_selector;
+    lv_obj_t *loading_screen;
     lv_obj_t *ble_button;
     lv_obj_t *ble_button_label;
     lv_obj_t *wifi_button;
@@ -34,6 +35,7 @@ enum ScreensEnum {
     SCREEN_ID_WIFI_JAMMER_SCREEN = 3,
     SCREEN_ID_BLE_SETTINGS = 4,
     SCREEN_ID_WIFI_JAMMER_SSIDS_SELECTOR = 5,
+    SCREEN_ID_LOADING_SCREEN = 6,
 };
 
 void create_screen_main();
@@ -50,6 +52,9 @@ void tick_screen_ble_settings();
 
 void create_screen_wifi_jammer_ssids_selector();
 void tick_screen_wifi_jammer_ssids_selector();
+
+void create_screen_loading_screen();
+void tick_screen_loading_screen();
 
 void tick_screen_by_id(enum ScreensEnum screenId);
 void tick_screen(int screen_index);

